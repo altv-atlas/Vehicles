@@ -1,10 +1,11 @@
-﻿using AltV.Net;
+﻿using AltV.Atlas.Vehicles.Interfaces;
+using AltV.Net;
 using AltV.Net.Async.Elements.Entities;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 namespace AltV.Atlas.Vehicles.Factories.Entities;
 
-public class AtlasVehicle : AsyncVehicle
+public class AtlasVehicle : AsyncVehicle , IAtlasVehicle
 {
     public uint Fuel => CalculateFuel( );
     public uint VehicleId { get; private set; }
@@ -18,11 +19,11 @@ public class AtlasVehicle : AsyncVehicle
         VehicleId = vehicleId;
     }
 
-    public void SpawnVehicle( Position pos, Rotation rot, uint model )
+    public void SpawnVehicle( uint model, Position pos, Rotation rot )
     {
-
+        throw new NotImplementedException( );
     }
-
+    
     public void WarpOutOfVehicle( IPlayer player )
     {
         var isInVehicle = Passengers.Any( s => s.Player == player );

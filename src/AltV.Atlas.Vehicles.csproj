@@ -12,9 +12,4 @@
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Enums\" />
-      <Folder Include="Interfaces\" />
-    </ItemGroup>
-
 </Project>
