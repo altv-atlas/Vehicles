@@ -27,4 +27,20 @@ public static class VehicleModule
 
         return serviceCollection;
     }
+    
+    /// <summary>
+    ///     Registers the vehicle module and it's classes/interfaces with a specific AtlasVehicleFactory Type T
+    /// </summary>
+    /// <param name="serviceCollection">A service collection</param>
+    /// <returns>The service collection</returns>
+    public static IServiceCollection RegisterVehicleModule<T>( this IServiceCollection serviceCollection ) where T : AtlasVehicleFactory
+    {
+        serviceCollection.AddTransient<IAtlasVehicle, AtlasVehicle>( );
+        serviceCollection.AddTransient<T>( );
+        serviceCollection.AddTransient<IVehicle, AsyncVehicle>( );
+
+        serviceCollection.AddTransient<IEntityFactory<IVehicle>, AltVehicleFactory>( );
+
+        return serviceCollection;
+    }
 }
