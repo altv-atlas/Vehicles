@@ -1,5 +1,8 @@
-﻿using AltV.Atlas.Vehicles.Factories.Entities;
-using AltV.Atlas.Vehicles.Factories.EntityFactories;
+﻿using AltV.Atlas.Vehicles.AltV.Entities;
+using AltV.Atlas.Vehicles.AltV.Factories;
+using AltV.Atlas.Vehicles.AltV.Interfaces;
+using AltV.Atlas.Vehicles.Entities;
+using AltV.Atlas.Vehicles.Factories;
 using AltV.Atlas.Vehicles.Interfaces;
 using AltV.Net;
 using AltV.Net.Async.Elements.Entities;
@@ -17,30 +20,23 @@ public static class VehicleModule
     /// </summary>
     /// <param name="serviceCollection">A service collection</param>
     /// <returns>The service collection</returns>
-    public static IServiceCollection RegisterVehicleModule( this IServiceCollection serviceCollection )
+    public static IServiceCollection RegisterVehicleModule<TFactory>( this IServiceCollection serviceCollection ) where TFactory : class, IAtlasVehicleFactory
     {
-        serviceCollection.AddTransient<IAtlasVehicle, AtlasVehicle>( );
-        serviceCollection.AddTransient<AtlasVehicleFactory>( );
-        serviceCollection.AddTransient<IVehicle, AsyncVehicle>( );
+        serviceCollection.AddTransient<IAtlasVehicle, AtlasVehicleBase>( );
+        serviceCollection.AddTransient<IAtlasVehicleFactory, TFactory>( );
 
-        serviceCollection.AddTransient<IEntityFactory<IVehicle>, AltVehicleFactory>( );
+        serviceCollection.AddTransient<IEntityFactory<IAtlasVehicle>, AltVehicleFactory>( );
 
         return serviceCollection;
     }
     
     /// <summary>
-    ///     Registers the vehicle module and it's classes/interfaces with a specific AtlasVehicleFactory Type T
+    ///     Registers the vehicle module and it's classes/interfaces
     /// </summary>
     /// <param name="serviceCollection">A service collection</param>
     /// <returns>The service collection</returns>
-    public static IServiceCollection RegisterVehicleModule<T>( this IServiceCollection serviceCollection ) where T : AtlasVehicleFactory
+    public static IServiceCollection RegisterVehicleModule( this IServiceCollection serviceCollection )
     {
-        serviceCollection.AddTransient<IAtlasVehicle, AtlasVehicle>( );
-        serviceCollection.AddTransient<T>( );
-        serviceCollection.AddTransient<IVehicle, AsyncVehicle>( );
-
-        serviceCollection.AddTransient<IEntityFactory<IVehicle>, AltVehicleFactory>( );
-
-        return serviceCollection;
+        return RegisterVehicleModule<AtlasVehicleFactory>( serviceCollection );
     }
 }

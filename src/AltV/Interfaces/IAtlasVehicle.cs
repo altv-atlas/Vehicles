@@ -1,12 +1,12 @@
 ﻿using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
-namespace AltV.Atlas.Vehicles.Interfaces;
+
+namespace AltV.Atlas.Vehicles.AltV.Interfaces;
 
 public interface IAtlasVehicle : IVehicle
 {
     uint Fuel { get; }
     uint VehicleId { get; set; }
-    void SpawnVehicle( uint model, Position pos, Rotation rot );
     void WarpOutOfVehicle( IPlayer player );
     bool LockVehicle( object item );
     bool LockVehicle( IPlayer player );
