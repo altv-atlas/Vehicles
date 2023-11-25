@@ -2,6 +2,7 @@
 using AltV.Atlas.Vehicles.AltV.Factories;
 using AltV.Atlas.Vehicles.AltV.Interfaces;
 using AltV.Atlas.Vehicles.Entities;
+using AltV.Atlas.Vehicles.Events;
 using AltV.Atlas.Vehicles.Factories;
 using AltV.Atlas.Vehicles.Interfaces;
 using AltV.Net;
@@ -24,6 +25,10 @@ public static class VehicleModule
     {
         serviceCollection.AddTransient<IAtlasVehicle, AtlasVehicleBase>( );
         serviceCollection.AddTransient<IAtlasVehicleFactory, TFactory>( );
+        
+        // Events
+        serviceCollection.AddSingleton<AtlasVehicleEvents>( );
+        serviceCollection.AddSingleton<PlayerEnterVehicleEvent>( );
 
         serviceCollection.AddTransient<IEntityFactory<IAtlasVehicle>, AltVehicleFactory>( );
 
@@ -38,5 +43,16 @@ public static class VehicleModule
     public static IServiceCollection RegisterVehicleModule( this IServiceCollection serviceCollection )
     {
         return RegisterVehicleModule<AtlasVehicleFactory>( serviceCollection );
+    }
+
+    /// <summary>
+    /// Initializes the vehicle module
+    /// </summary>
+    /// <param name="serviceProvider">a service provider</param>
+    /// <returns></returns>
+    public static IServiceProvider InitializeVehicleModule( this IServiceProvider serviceProvider )
+    {
+        _ = serviceProvider.GetService<PlayerEnterVehicleEvent>( );
+        return serviceProvider;
     }
 }

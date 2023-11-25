@@ -6,7 +6,6 @@ namespace AltV.Atlas.Vehicles.AltV.Interfaces;
 public interface IAtlasVehicle : IVehicle
 {
     uint VehicleId { get; set; }
+    bool Locked { get; set; }
     void WarpOutOfVehicle( IPlayer player );
-    bool LockVehicle( object item );
-    bool LockVehicle( IPlayer player );
 }

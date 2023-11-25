@@ -8,6 +8,7 @@ namespace AltV.Atlas.Vehicles.AltV.Entities;
 public class AtlasVehicleBase( ICore core, IntPtr nativePointer, uint id ) : AsyncVehicle( core, nativePointer, id ), IAtlasVehicle
 {
     public uint VehicleId { get; set; }
+    public bool Locked { get; set; }
 
     /// <summary>
     /// Forces the player out of the vehicle
@@ -21,14 +22,5 @@ public class AtlasVehicleBase( ICore core, IntPtr nativePointer, uint id ) : Asy
             return;
 
         player.Position = Position;
-    }
-
-    public bool LockVehicle( object item )
-    {
-        return false;
-    }
-    public bool LockVehicle( IPlayer player )
-    {
-        return false;
     }
 }
