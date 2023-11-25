@@ -34,7 +34,6 @@ public class AtlasVehicleFactory : IAtlasVehicleFactory
     /// <summary>
     /// Create a new vehicle of type T
     /// </summary>
-    /// <param name="vehicleId"></param>
     /// <param name="model">The model of the vehicle</param>
     /// <param name="position">The position to spawn the vehicle at</param>
     /// <param name="rotation">The rotation to spawn the vehicle at</param>

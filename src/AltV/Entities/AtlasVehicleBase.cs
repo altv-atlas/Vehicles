@@ -1,20 +1,18 @@
 ﻿using AltV.Atlas.Vehicles.AltV.Interfaces;
 using AltV.Net;
 using AltV.Net.Async.Elements.Entities;
-using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 
 namespace AltV.Atlas.Vehicles.AltV.Entities;
 
-public class AtlasVehicleBase : AsyncVehicle, IAtlasVehicle
+public class AtlasVehicleBase( ICore core, IntPtr nativePointer, uint id ) : AsyncVehicle( core, nativePointer, id ), IAtlasVehicle
 {
-    public uint Fuel => CalculateFuel( );
     public uint VehicleId { get; set; }
 
-    public AtlasVehicleBase( ICore core, IntPtr nativePointer, uint id ) : base( core, nativePointer, id )
-    {
-    }
-
+    /// <summary>
+    /// Forces the player out of the vehicle
+    /// </summary>
+    /// <param name="player">The player to force out</param>
     public void WarpOutOfVehicle( IPlayer player )
     {
         var isInVehicle = Passengers.Any( s => s.Player == player );
@@ -32,10 +30,5 @@ public class AtlasVehicleBase : AsyncVehicle, IAtlasVehicle
     public bool LockVehicle( IPlayer player )
     {
         return false;
-    }
-
-    private uint CalculateFuel( )
-    {
-        return 1;
     }
 }
