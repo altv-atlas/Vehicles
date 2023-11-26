@@ -12,7 +12,6 @@ public static class GtaColor
     /// </summary>
     public static readonly FrozenDictionary<EGtaColor, string> ColorHexMap = new Dictionary<EGtaColor, string>
     {
-        //TODO: The hex colors doesnt match yet needs to be done at some point
         { EGtaColor.MetallicBlack, "#0d1116" },
         { EGtaColor.MetallicGraphiteBlack, "#1c1e21" },
         { EGtaColor.MetallicBlackSteal, "#32383d" },
