@@ -92,6 +92,30 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     public void SetPearlColor( EGtaColor color ) => PearlColor = ( byte ) color;
 
     /// <summary>
+    ///  Sets the gtaColor as rgb color
+    /// </summary>
+    /// <param name="color">The gtaColor to apply</param>
+    public void SetPrimaryColor( EGtaColor color )
+    {
+        if( !Utility.ColorHexMap.TryGetValue( color, out var rgb ) )
+            return;
+
+        SetPrimaryRgb( rgb );
+    }
+
+    /// <summary>
+    /// Sets the gtaColor as rgb color
+    /// </summary>
+    /// <param name="color">The gtaColor to apply</param>
+    public void SetSecondaryColor( EGtaColor color )
+    {
+        if( !Utility.ColorHexMap.TryGetValue( color, out var rgb ) )
+            return;
+
+        SetSecondaryRgb( rgb );
+    }
+
+    /// <summary>
     /// Installs a given VehicleMod
     /// </summary>
     /// <param name="vehicleMod">The mod to install</param>
