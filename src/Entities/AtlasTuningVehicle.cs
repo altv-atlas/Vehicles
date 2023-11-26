@@ -64,7 +64,7 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     /// <summary>
     /// Sets the vehicle PrimaryColorRgb from a string
     /// </summary>
-    /// <param name="rgb"></param>
+    /// <param name="rgb">The rgb color as a string</param>
     public void SetPrimaryRgb( string rgb )
     {
         if( !rgb.TryParseRgb( out var color ) )
@@ -76,7 +76,7 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     /// <summary>
     /// Sets the vehicle SecondaryColorRgb from a string
     /// </summary>
-    /// <param name="rgb"></param>
+    /// <param name="rgb">The rgb color as a string</param>
     public void SetSecondaryRgb( string rgb )
     {
         if( !rgb.TryParseRgb( out var color ) )
@@ -88,7 +88,7 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     /// <summary>
     /// Sets the vehicle PearlColor from a EGtaColor
     /// </summary>
-    /// <param name="color"></param>
+    /// <param name="color">The EGtaColor to apply</param>
     public void SetPearlColor( EGtaColor color ) => PearlColor = ( byte ) color;
 
     /// <summary>
@@ -151,10 +151,74 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     /// <summary>
     /// Removes all given vehicleMods
     /// </summary>
-    /// <param name="vehicleMods"></param>
+    /// <param name="vehicleMods">The list of mods to be removed</param>
     /// <returns>Returns a list of tuples with the given mod and the SetMod result</returns>
     public IEnumerable<( VehicleMod mod, bool result )> RemoveMods( IEnumerable<VehicleMod> vehicleMods )
     {
         return ( from vehicleMod in vehicleMods.ToList( ) let result = RemoveMod( vehicleMod.ModType ) select ( vehicleMod, result ) ).ToList( );
     }
+
+    /// <summary>
+    /// Set the vehicle NeonColor
+    /// </summary>
+    /// <param name="rgb">The rgb color as a string</param>
+    public void SetNeonColorRgb( string rgb )
+    {
+        if( !rgb.TryParseRgb( out var color ) )
+            return;
+
+        NeonColor = color;
+    }
+
+    /// <summary>
+    /// Sets a specific neon style
+    /// </summary>
+    /// <param name="neonStyle">The neonStyle to apply</param>
+    public void SetNeonStyle( ENeonStyle neonStyle )
+    {
+        Vehicle.SetNeonActive(
+            ( neonStyle & ENeonStyle.Left ) != 0,
+            ( neonStyle & ENeonStyle.Right ) != 0,
+            ( neonStyle & ENeonStyle.Top ) != 0,
+            ( neonStyle & ENeonStyle.Back ) != 0
+        );
+    }
+
+    /// <summary>
+    /// Sets a rgb tireSmoke color
+    /// </summary>
+    /// <param name="rgb">The rgb color as a string</param>
+    public void SetTireSmokeRgb( string rgb )
+    {
+        if( !rgb.TryParseRgb( out var color ) )
+            return;
+
+        TireSmokeColor = color;
+    }
+
+    /// <summary>
+    /// Sets the vehicle headlightColor
+    /// </summary>
+    /// <param name="headlightColor">The headlightColor to apply</param>
+    public void SetHeadlightColor( EHeadlightColor headlightColor )
+    {
+        HeadlightColor = ( byte ) headlightColor;
+    }
+
+    /// <summary>
+    /// Sets the vehicle wheelColor
+    /// </summary>
+    /// <param name="color">The color to apply</param>
+    public void SetWheelColor( EGtaColor color ) => WheelColor = ( byte ) color;
+
+    /// <summary>
+    /// Sets the vehicle wheel type and variation
+    /// </summary>
+    /// <param name="wheelType">The wheelType to apply</param>
+    /// <param name="variation">The wheelVariation to apply</param>
+    public void SetWheels( EWheelType wheelType, byte variation )
+    {
+        SetWheels( ( byte ) wheelType, variation );
+    }
+
 }
