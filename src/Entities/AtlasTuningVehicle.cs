@@ -1,7 +1,8 @@
-﻿using AltV.Atlas.Vehicles.AltV.Entities;
+﻿using AltV.Atlas.Shared.Extensions;
+using AltV.Atlas.Vehicles.AltV.Entities;
+using AltV.Atlas.Vehicles.Data;
 using AltV.Atlas.Vehicles.Enums;
 using AltV.Atlas.Vehicles.Models;
-using AltV.Atlas.Vehicles.Utils;
 using AltV.Net;
 using AltV.Net.Data;
 using AltV.Net.Enums;
@@ -97,7 +98,7 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     /// <param name="color">The gtaColor to apply</param>
     public void SetPrimaryColor( EGtaColor color )
     {
-        if( !Utility.ColorHexMap.TryGetValue( color, out var rgb ) )
+        if( !GtaColor.ColorHexMap.TryGetValue( color, out var rgb ) )
             return;
 
         SetPrimaryRgb( rgb );
@@ -109,7 +110,7 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     /// <param name="color">The gtaColor to apply</param>
     public void SetSecondaryColor( EGtaColor color )
     {
-        if( !Utility.ColorHexMap.TryGetValue( color, out var rgb ) )
+        if( !GtaColor.ColorHexMap.TryGetValue( color, out var rgb ) )
             return;
 
         SetSecondaryRgb( rgb );
