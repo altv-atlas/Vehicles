@@ -1,12 +1,9 @@
-﻿using AltV.Atlas.Vehicles.AltV.Entities;
-using AltV.Atlas.Vehicles.AltV.Interfaces;
-using AltV.Atlas.Vehicles.Entities;
+﻿using AltV.Atlas.Vehicles.AltV.Interfaces;
 using AltV.Atlas.Vehicles.Interfaces;
 using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Enums;
-using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -41,12 +38,10 @@ public class AtlasVehicleFactory : IAtlasVehicleFactory
     /// <returns>A new vehicle of type T</returns>
     public async Task<T> CreateVehicleAsync<T>( uint model, Position position, Rotation rotation ) where T : class, IAtlasVehicle
     {
-        var config = new MapperConfiguration(cfg => cfg.CreateMap<AtlasVehicleBase, T>());
-        var mapper = config.CreateMapper();
-        
         var altVeh = await AltAsync.CreateVehicle( model, position, rotation );
-        _logger.LogInformation( "ALtVeh: {Type}", altVeh.GetType(  ) );
-        return mapper.Map<T>( altVeh );
+        var actualVeh = ActivatorUtilities.CreateInstance<T>( _serviceProvider, altVeh.Core, altVeh.NativePointer, altVeh.Id );
+        Alt.Core.PoolManager.Vehicle.Add( actualVeh );
+        return actualVeh;
     }
 
     public Task<T> CreateVehicleAsync<T>( string model, Position position, Rotation rotation ) where T : class, IAtlasVehicle
