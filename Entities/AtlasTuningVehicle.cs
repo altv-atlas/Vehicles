@@ -1,4 +1,5 @@
-﻿using AltV.Atlas.Shared.Extensions;
+﻿using System.Text.Json;
+using AltV.Atlas.Shared.Extensions;
 using AltV.Atlas.Vehicles.Server.AltV.Entities;
 using AltV.Atlas.Vehicles.Server.Data;
 using AltV.Atlas.Vehicles.Server.Enums;
@@ -10,8 +11,13 @@ using AltV.Net.Enums;
 
 namespace AltV.Atlas.Vehicles.Server.Entities;
 
+/// <summary>
+/// Server-side atlasTuningVehicle
+/// </summary>
 public class AtlasTuningVehicle : AtlasVehicleBase
 {
+    private IList<WheelMod> _wheelMods = new List<WheelMod>( );
+
     /// <summary>
     /// Creates an AtlasTuningVehicle
     /// </summary>
@@ -248,20 +254,41 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     }
 
     /// <summary>
+    /// Changes the wheelMod values of the specific wheelMod
+    /// </summary>
+    /// <param name="wheelMod"></param>
+    public void ChangeWheel( WheelMod wheelMod )
+    {
+        var mod = _wheelMods.FirstOrDefault( mod => mod.Index == wheelMod.Index );
+
+        if( mod is null )
+        {
+            _wheelMods.Add( wheelMod );
+        }
+        else
+        {
+            _wheelMods[ _wheelMods.IndexOf( mod ) ] = wheelMod;
+        }
+
+        ChangeWheels( _wheelMods );
+    }
+
+    /// <summary>
     /// Changes the vehicles wheel mods for each wheel
     /// </summary>
     /// <param name="wheelMod">The data to apply</param>
-    public void ChangeWheel( WheelMod wheelMod )
+    public void ChangeWheels( WheelMod wheelMod )
     {
         var wheels = new List<WheelMod>( );
 
         for( byte i = 0; i < WheelsCount; i++ )
         {
-            wheelMod.Index = i;
-            wheels.Add( wheelMod );
+            wheels.Add( wheelMod with
+            {
+                Index = i
+            } );
         }
-
-        SetStreamSyncedMetaData( "changeWheels", wheels );
+        ChangeWheels( wheels );
     }
 
     /// <summary>
@@ -270,12 +297,77 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     /// <param name="wheelMods">The mod values to apply</param>
     public void ChangeWheels( IList<WheelMod> wheelMods )
     {
-        SetStreamSyncedMetaData( "changeWheels", wheelMods );
+        _wheelMods = wheelMods;
+        var values = JsonSerializer.Serialize( _wheelMods );
+        SetStreamSyncedMetaData( "atlas.changeWheels", values );
     }
 
-    public void ChangeWheelTest( float value )
+
+    /// <summary>
+    /// Sets the camber value of the specific wheel
+    /// </summary>
+    /// <param name="index">Index of the wheel</param>
+    /// <param name="camber">Value of the camber to apply</param>
+    public void SetWheelCamber( byte index, float camber )
     {
-        SetStreamSyncedMetaData( "changeWheels", value );
+        SetWheelProperty( index, mod => mod.Camber = camber );
+    }
+    /// <summary>
+    /// Sets the height value of the specific wheel
+    /// </summary>
+    /// <param name="index">Index of the wheel</param>
+    /// <param name="height">Value of the height to apply</param>
+    public void SetWheelHeight( byte index, float height )
+    {
+        SetWheelProperty( index, mod => mod.Height = height );
     }
 
+    /// <summary>
+    /// Sets the rimRadius value of the specific wheel
+    /// </summary>
+    /// <param name="index">Index of the wheel</param>
+    /// <param name="rimRadius">Value of the rimRadius to apply</param>
+    public void SetWheelRimRadius( byte index, float rimRadius )
+    {
+        SetWheelProperty( index, mod => mod.RimRadius = rimRadius );
+    }
+
+    /// <summary>
+    /// Sets the trackWidth value of the specific wheel
+    /// </summary>
+    /// <param name="index">Index of the wheel</param>
+    /// <param name="trackWidth">Value of the trackWidth to apply</param>
+    public void SetWheelTrackWidth( byte index, float trackWidth )
+    {
+        SetWheelProperty( index, mod => mod.TrackWidth = trackWidth );
+    }
+
+    /// <summary>
+    /// Sets the tyreRadius value of the specific wheel
+    /// </summary>
+    /// <param name="index">Index of the wheel</param>
+    /// <param name="tyreRadius">Value of the tyreRadius to apply</param>
+    public void SetWheelTyreRadius( byte index, float tyreRadius )
+    {
+        SetWheelProperty( index, mod => mod.TyreRadius = tyreRadius );
+    }
+
+    private void SetWheelProperty( byte index, Action<WheelMod> setProperty )
+    {
+        var wheelMod = _wheelMods.FirstOrDefault( mod => mod.Index == index );
+
+        if( wheelMod is null )
+        {
+            _wheelMods.Add( new WheelMod
+            {
+                Index = index
+            } );
+
+            wheelMod = _wheelMods.Last( );
+        }
+
+        setProperty( wheelMod );
+
+        ChangeWheels( _wheelMods );
+    }
 }
