@@ -29,7 +29,7 @@
 
 
     <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <ProjectReference Include="..\AltV.Atlas.Shared\AltV.Atlas.Shared.csproj" />
+        <ProjectReference Include="..\..\AltV.Atlas.Shared\AltV.Atlas.Shared.csproj" />
         <ProjectReference Include="..\AltV.Atlas.Vehicles.Shared\AltV.Atlas.Vehicles.Shared.csproj" />
     </ItemGroup>
 
