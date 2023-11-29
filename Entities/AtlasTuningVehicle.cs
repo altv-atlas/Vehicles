@@ -1,13 +1,14 @@
 ﻿using AltV.Atlas.Shared.Extensions;
-using AltV.Atlas.Vehicles.AltV.Entities;
-using AltV.Atlas.Vehicles.Data;
-using AltV.Atlas.Vehicles.Enums;
-using AltV.Atlas.Vehicles.Models;
+using AltV.Atlas.Vehicles.Server.AltV.Entities;
+using AltV.Atlas.Vehicles.Server.Data;
+using AltV.Atlas.Vehicles.Server.Enums;
+using AltV.Atlas.Vehicles.Server.Models;
+using AltV.Atlas.Vehicles.Shared.Models;
 using AltV.Net;
 using AltV.Net.Data;
 using AltV.Net.Enums;
 
-namespace AltV.Atlas.Vehicles.Entities;
+namespace AltV.Atlas.Vehicles.Server.Entities;
 
 public class AtlasTuningVehicle : AtlasVehicleBase
 {
@@ -244,6 +245,37 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     public void SetWheels( EWheelType wheelType, byte variation )
     {
         SetWheels( ( byte ) wheelType, variation );
+    }
+
+    /// <summary>
+    /// Changes the vehicles wheel mods for each wheel
+    /// </summary>
+    /// <param name="wheelMod">The data to apply</param>
+    public void ChangeWheel( WheelMod wheelMod )
+    {
+        var wheels = new List<WheelMod>( );
+
+        for( byte i = 0; i < WheelsCount; i++ )
+        {
+            wheelMod.Index = i;
+            wheels.Add( wheelMod );
+        }
+
+        SetStreamSyncedMetaData( "changeWheels", wheels );
+    }
+
+    /// <summary>
+    /// Changes the vehicle wheel mods
+    /// </summary>
+    /// <param name="wheelMods">The mod values to apply</param>
+    public void ChangeWheels( IList<WheelMod> wheelMods )
+    {
+        SetStreamSyncedMetaData( "changeWheels", wheelMods );
+    }
+
+    public void ChangeWheelTest( float value )
+    {
+        SetStreamSyncedMetaData( "changeWheels", value );
     }
 
 }

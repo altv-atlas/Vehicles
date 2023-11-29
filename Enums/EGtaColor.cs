@@ -1,4 +1,4 @@
-﻿namespace AltV.Atlas.Vehicles.Enums;
+﻿namespace AltV.Atlas.Vehicles.Server.Enums;
 
 /// <summary>
 /// All default GTA colors

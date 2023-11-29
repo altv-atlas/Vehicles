@@ -12,10 +12,11 @@
         <PublishUrl>https://github.com/altv-atlas</PublishUrl>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <RootNamespace>AltV.Atlas.Vehicles.Server</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="../README.md" Pack="true" PackagePath="\"/>
+        <None Include="README.md" Pack="true" PackagePath="\"/>
         <PackageReference Include="AltV.Net.Async" Version="15.0.6"/>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0"/>
@@ -26,7 +27,13 @@
         <PackageReference Include="AltV.Atlas.Shared" Version="2.0.0" />
     </ItemGroup>
 
+
     <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <ProjectReference Include="..\..\AltV.Atlas.Shared\AltV.Atlas.Shared.csproj" />
+        <ProjectReference Include="..\AltV.Atlas.Shared\AltV.Atlas.Shared.csproj" />
+        <ProjectReference Include="..\AltV.Atlas.Vehicles.Shared\AltV.Atlas.Vehicles.Shared.csproj" />
+    </ItemGroup>
+
+
+    <ItemGroup>
     </ItemGroup>
 </Project>

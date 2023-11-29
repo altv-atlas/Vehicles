@@ -1,5 +1,6 @@
 ﻿using AltV.Net;
-namespace AltV.Atlas.Vehicles.Entities;
+
+namespace AltV.Atlas.Vehicles.Server.Entities;
 
 public class AtlasPlayerVehicle( ICore core, IntPtr nativePointer, uint id ) : AtlasTuningVehicle( core, nativePointer, id )
 {

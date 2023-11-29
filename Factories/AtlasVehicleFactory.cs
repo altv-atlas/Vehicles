@@ -1,5 +1,5 @@
-﻿using AltV.Atlas.Vehicles.AltV.Interfaces;
-using AltV.Atlas.Vehicles.Interfaces;
+﻿using AltV.Atlas.Vehicles.Server.AltV.Interfaces;
+using AltV.Atlas.Vehicles.Server.Interfaces;
 using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Data;
@@ -7,7 +7,7 @@ using AltV.Net.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace AltV.Atlas.Vehicles.Factories;
+namespace AltV.Atlas.Vehicles.Server.Factories;
 
 /// <summary>
 /// Factory to create new atlas vehicle

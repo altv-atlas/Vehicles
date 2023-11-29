@@ -1,5 +1,6 @@
 ﻿using AltV.Net.Enums;
-namespace AltV.Atlas.Vehicles.Models;
+
+namespace AltV.Atlas.Vehicles.Server.Models;
 
 public class VehicleMod
 {

@@ -1,8 +1,8 @@
-﻿using AltV.Atlas.Vehicles.AltV.Interfaces;
+﻿using AltV.Atlas.Vehicles.Server.AltV.Interfaces;
 using AltV.Net.Data;
 using AltV.Net.Enums;
 
-namespace AltV.Atlas.Vehicles.Interfaces;
+namespace AltV.Atlas.Vehicles.Server.Interfaces;
 
 public interface IAtlasVehicleFactory
 {

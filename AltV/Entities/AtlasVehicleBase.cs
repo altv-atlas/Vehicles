@@ -1,9 +1,9 @@
-﻿using AltV.Atlas.Vehicles.AltV.Interfaces;
+﻿using AltV.Atlas.Vehicles.Server.AltV.Interfaces;
 using AltV.Net;
 using AltV.Net.Async.Elements.Entities;
 using AltV.Net.Elements.Entities;
 
-namespace AltV.Atlas.Vehicles.AltV.Entities;
+namespace AltV.Atlas.Vehicles.Server.AltV.Entities;
 
 public class AtlasVehicleBase( ICore core, IntPtr nativePointer, uint id ) : AsyncVehicle( core, nativePointer, id ), IAtlasVehicle
 {

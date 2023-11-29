@@ -1,6 +1,7 @@
 ﻿using System.Collections.Frozen;
-using AltV.Atlas.Vehicles.Enums;
-namespace AltV.Atlas.Vehicles.Data;
+using AltV.Atlas.Vehicles.Server.Enums;
+
+namespace AltV.Atlas.Vehicles.Server.Data;
 
 /// <summary>
 /// A class that holds GtaColor extensions

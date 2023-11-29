@@ -1,7 +1,7 @@
-﻿using AltV.Atlas.Vehicles.AltV.Interfaces;
+﻿using AltV.Atlas.Vehicles.Server.AltV.Interfaces;
 using AltV.Net.Elements.Entities;
 
-namespace AltV.Atlas.Vehicles.Events;
+namespace AltV.Atlas.Vehicles.Server.Events;
 
 /// <summary>
 /// Class that receives and emits events that occur within vehicles module

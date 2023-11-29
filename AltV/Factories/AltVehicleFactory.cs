@@ -1,9 +1,9 @@
-﻿using AltV.Atlas.Vehicles.AltV.Entities;
-using AltV.Atlas.Vehicles.AltV.Interfaces;
+﻿using AltV.Atlas.Vehicles.Server.AltV.Entities;
+using AltV.Atlas.Vehicles.Server.AltV.Interfaces;
 using AltV.Net;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AltV.Atlas.Vehicles.AltV.Factories;
+namespace AltV.Atlas.Vehicles.Server.AltV.Factories;
 
 /// <summary>
 /// Entity factory for atlas vehicles

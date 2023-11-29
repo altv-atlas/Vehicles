@@ -1,10 +1,9 @@
-﻿using AltV.Atlas.Vehicles.AltV.Interfaces;
+﻿using AltV.Atlas.Vehicles.Server.AltV.Interfaces;
 using AltV.Net;
-using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 
-namespace AltV.Atlas.Vehicles.Events;
+namespace AltV.Atlas.Vehicles.Server.Events;
 
 /// <summary>
 /// Listens to altV PlayerEnterVehicle event

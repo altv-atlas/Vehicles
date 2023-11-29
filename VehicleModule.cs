@@ -1,15 +1,13 @@
-﻿using AltV.Atlas.Vehicles.AltV.Entities;
-using AltV.Atlas.Vehicles.AltV.Factories;
-using AltV.Atlas.Vehicles.AltV.Interfaces;
-using AltV.Atlas.Vehicles.Entities;
-using AltV.Atlas.Vehicles.Events;
-using AltV.Atlas.Vehicles.Factories;
-using AltV.Atlas.Vehicles.Interfaces;
+﻿using AltV.Atlas.Vehicles.Server.AltV.Entities;
+using AltV.Atlas.Vehicles.Server.AltV.Factories;
+using AltV.Atlas.Vehicles.Server.AltV.Interfaces;
+using AltV.Atlas.Vehicles.Server.Events;
+using AltV.Atlas.Vehicles.Server.Factories;
+using AltV.Atlas.Vehicles.Server.Interfaces;
 using AltV.Net;
-using AltV.Net.Async.Elements.Entities;
-using AltV.Net.Elements.Entities;
 using Microsoft.Extensions.DependencyInjection;
-namespace AltV.Atlas.Vehicles;
+
+namespace AltV.Atlas.Vehicles.Server;
 
 /// <summary>
 ///     Entrypoint for atlas vehicle module

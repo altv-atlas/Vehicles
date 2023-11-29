@@ -1,7 +1,6 @@
-﻿using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
+﻿using AltV.Net.Elements.Entities;
 
-namespace AltV.Atlas.Vehicles.AltV.Interfaces;
+namespace AltV.Atlas.Vehicles.Server.AltV.Interfaces;
 
 public interface IAtlasVehicle : IVehicle
 {
