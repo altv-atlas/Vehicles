@@ -16,7 +16,7 @@ namespace AltV.Atlas.Vehicles.Server.Entities;
 /// </summary>
 public class AtlasTuningVehicle : AtlasVehicleBase
 {
-    private IList<WheelMod> _wheelMods = new List<WheelMod>( );
+    private List<WheelMod> _wheelMods = new List<WheelMod>( );
 
     /// <summary>
     /// Creates an AtlasTuningVehicle
@@ -259,15 +259,15 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     /// <param name="wheelMod"></param>
     public void ChangeWheel( WheelMod wheelMod )
     {
-        var mod = _wheelMods.FirstOrDefault( mod => mod.Index == wheelMod.Index );
+        var index = _wheelMods.FindIndex( mod => mod.Index == wheelMod.Index );
 
-        if( mod is null )
+        if( index is -1 )
         {
             _wheelMods.Add( wheelMod );
         }
         else
         {
-            _wheelMods[ _wheelMods.IndexOf( mod ) ] = wheelMod;
+            _wheelMods[ index ] = wheelMod;
         }
 
         ChangeWheels( _wheelMods );
@@ -295,11 +295,11 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     /// Changes the vehicle wheel mods
     /// </summary>
     /// <param name="wheelMods">The mod values to apply</param>
-    public void ChangeWheels( IList<WheelMod> wheelMods )
+    public void ChangeWheels( List<WheelMod> wheelMods )
     {
         _wheelMods = wheelMods;
         var values = JsonSerializer.Serialize( _wheelMods );
-        SetStreamSyncedMetaData( "atlas.changeWheels", values );
+        SetStreamSyncedMetaData( "atlas:vehicles:changeWheels", values );
     }
 
 
