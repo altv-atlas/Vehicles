@@ -4,10 +4,12 @@ using AltV.Atlas.Vehicles.Server.AltV.Entities;
 using AltV.Atlas.Vehicles.Server.Data;
 using AltV.Atlas.Vehicles.Server.Enums;
 using AltV.Atlas.Vehicles.Server.Models;
+using AltV.Atlas.Vehicles.Shared;
 using AltV.Atlas.Vehicles.Shared.Models;
 using AltV.Net;
 using AltV.Net.Data;
 using AltV.Net.Enums;
+using VehicleConstants = AltV.Atlas.Vehicles.Shared.VehicleConstants;
 
 namespace AltV.Atlas.Vehicles.Server.Entities;
 
@@ -299,7 +301,7 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     {
         _wheelMods = wheelMods;
         var values = JsonSerializer.Serialize( _wheelMods );
-        SetStreamSyncedMetaData( "atlas:vehicles:changeWheels", values );
+        SetStreamSyncedMetaData( VehicleConstants.ChangeWheelsMetaKey, values );
     }
 
 
