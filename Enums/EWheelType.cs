@@ -1,4 +1,5 @@
-﻿namespace AltV.Atlas.Vehicles.Server.Enums;
+﻿#pragma warning disable 1591
+namespace AltV.Atlas.Vehicles.Server.Enums;
 
 /// <summary>
 /// All different default GTA wheel types
@@ -19,3 +20,4 @@ public enum EWheelType : byte
     TunerSport = 123,
     TunerExtra = 124
 }
+#pragma warning restore 1591

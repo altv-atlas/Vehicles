@@ -20,6 +20,12 @@ public class AtlasVehicleEvents
     /// </summary>
     public event PlayerWarpedOutOfLockedVehicleDelegate? OnPlayerWarpedOutOfLockedVehicle;
 
+    /// <summary>
+    /// Even that triggers when a player got warped out of a locked vehicle
+    /// </summary>
+    /// <param name="player">Player that was warped out</param>
+    /// <param name="vehicle">The vehicle the player got warped out of</param>
+    /// <param name="seat">The seat he was warped out of</param>
     public void PlayerWarpedOutOfLockedVehicle( IPlayer player, IAtlasVehicle vehicle, byte seat )
     {
         OnPlayerWarpedOutOfLockedVehicle?.Invoke( player, vehicle, seat );

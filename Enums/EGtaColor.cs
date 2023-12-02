@@ -1,4 +1,5 @@
-﻿namespace AltV.Atlas.Vehicles.Server.Enums;
+﻿#pragma warning disable 1591
+namespace AltV.Atlas.Vehicles.Server.Enums;
 
 /// <summary>
 /// All default GTA colors
@@ -166,3 +167,4 @@ public enum EGtaColor : byte
     PureGold,
     BrushedGold
 }
+#pragma warning restore 159

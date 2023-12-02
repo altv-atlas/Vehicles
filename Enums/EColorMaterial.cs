@@ -1,4 +1,5 @@
-﻿namespace AltV.Atlas.Vehicles.Server.Enums;
+﻿#pragma warning disable 1591
+namespace AltV.Atlas.Vehicles.Server.Enums;
 
 /// <summary>
 /// Different materials a car color can have
@@ -13,3 +14,4 @@ public enum EColorMaterial : byte
     Chrome = 120,
     DefaultAlloy = 156,
 }
+#pragma warning restore 1591

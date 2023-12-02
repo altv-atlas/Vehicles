@@ -5,9 +5,21 @@ using AltV.Net.Elements.Entities;
 
 namespace AltV.Atlas.Vehicles.Server.AltV.Entities;
 
+/// <summary>
+/// Base Atlas vehicle class, can be inherited from to extend functionality
+/// </summary>
+/// <param name="core">AltV core</param>
+/// <param name="nativePointer">AltV nativePointer</param>
+/// <param name="id">Id of the ped</param>
 public class AtlasVehicleBase( ICore core, IntPtr nativePointer, uint id ) : AsyncVehicle( core, nativePointer, id ), IAtlasVehicle
 {
+    /// <summary>
+    /// The vehicle id
+    /// </summary>
     public uint VehicleId { get; set; }
+    /// <summary>
+    /// The state if the vehicle is locked
+    /// </summary>
     public bool Locked { get; set; }
 
     /// <summary>

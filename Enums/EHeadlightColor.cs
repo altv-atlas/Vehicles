@@ -1,4 +1,5 @@
-﻿namespace AltV.Atlas.Vehicles.Server.Enums;
+﻿#pragma warning disable 1591
+namespace AltV.Atlas.Vehicles.Server.Enums;
 
 /// <summary>
 /// All available headlight colors
@@ -19,3 +20,4 @@ public enum EHeadlightColor : byte
     Purple,
     Ultraviolet
 }
+#pragma warning restore 1591

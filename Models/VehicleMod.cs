@@ -2,6 +2,9 @@
 
 namespace AltV.Atlas.Vehicles.Server.Models;
 
+/// <summary>
+/// Class that holds values for a specific vehicleMod
+/// </summary>
 public class VehicleMod
 {
     /// <summary>
@@ -13,5 +16,4 @@ public class VehicleMod
     /// Index of the vehicle mod
     /// </summary>
     public uint Index { get; init; }
-
 }
