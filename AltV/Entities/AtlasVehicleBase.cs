@@ -1,6 +1,7 @@
 ﻿using AltV.Atlas.Vehicles.Server.AltV.Interfaces;
 using AltV.Net;
 using AltV.Net.Async.Elements.Entities;
+using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 
 namespace AltV.Atlas.Vehicles.Server.AltV.Entities;
@@ -34,5 +35,17 @@ public class AtlasVehicleBase( ICore core, IntPtr nativePointer, uint id ) : Asy
             return;
 
         player.Position = Position;
+    }
+
+    /// <summary>
+    /// Gets the seat index of the given player
+    /// </summary>
+    /// <param name="player">Player to get the seat for</param>
+    /// <returns>Returns the seat index when found and 0 if not</returns>
+    public byte GetSeatIndex( IPlayer player )
+    {
+        PlayerSeat? playerSeat = Passengers.FirstOrDefault( p => p.Player == player );
+
+        return playerSeat is not null ? player.Seat : ( byte ) 0;
     }
 }
