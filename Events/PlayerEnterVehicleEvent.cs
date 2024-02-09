@@ -6,7 +6,7 @@ using AltV.Net.Elements.Entities;
 namespace AltV.Atlas.Vehicles.Server.Events;
 
 /// <summary>
-/// Listens to altV PlayerEnterVehicle event
+/// Listens to altV OnPlayerEnterVehicle event
 /// </summary>
 public sealed class PlayerEnterVehicleEvent
 {
@@ -18,10 +18,10 @@ public sealed class PlayerEnterVehicleEvent
     public PlayerEnterVehicleEvent( AtlasVehicleEvents atlasVehicleEvents )
     {
         _atlasVehicleEvents = atlasVehicleEvents;
-        Alt.OnPlayerEnterVehicle += OnOnPlayerEnterVehicle;
+        Alt.OnPlayerEnterVehicle += OnPlayerEnterVehicle;
     }
 
-    private void OnOnPlayerEnterVehicle( IVehicle vehicle, IPlayer player, byte seat )
+    private void OnPlayerEnterVehicle( IVehicle vehicle, IPlayer player, byte seat )
     {
         if( vehicle is not IAtlasVehicle atlasVehicle )
             return;

@@ -21,7 +21,7 @@ public class AtlasVehicleEvents
     public event PlayerWarpedOutOfLockedVehicleDelegate? OnPlayerWarpedOutOfLockedVehicle;
 
     /// <summary>
-    /// Even that triggers when a player got warped out of a locked vehicle
+    /// Event that triggers when a player got warped out of a locked vehicle
     /// </summary>
     /// <param name="player">Player that was warped out</param>
     /// <param name="vehicle">The vehicle the player got warped out of</param>

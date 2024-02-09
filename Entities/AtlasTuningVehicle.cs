@@ -345,13 +345,23 @@ public class AtlasTuningVehicle : AtlasVehicleBase
     }
 
     /// <summary>
-    /// Sets the tyreRadius value of the specific wheel
+    /// Sets the tyreWidth value of the specific wheel
     /// </summary>
     /// <param name="index">Index of the wheel</param>
-    /// <param name="tyreRadius">Value of the tyreRadius to apply</param>
+    /// <param name="tyreRadius">Value of the tyreWidth to apply</param>
     public void SetWheelTyreRadius( byte index, float tyreRadius )
     {
         SetWheelProperty( index, mod => mod.TyreRadius = tyreRadius );
+    }
+    
+    /// <summary>
+    /// Sets the tyreWidth value of the specific wheel
+    /// </summary>
+    /// <param name="index">Index of the wheel</param>
+    /// <param name="tyreWidth">Value of the tyreWidth to apply</param>
+    public void SetWheelTyreWidth( byte index, float tyreWidth )
+    {
+        SetWheelProperty( index, mod => mod.TyreWidth = tyreWidth );
     }
 
     private void SetWheelProperty( byte index, Action<WheelMod> setProperty )
