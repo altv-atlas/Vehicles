@@ -40,7 +40,7 @@ public class AtlasVehicleFactory : IAtlasVehicleFactory
     {
         var altVeh = await AltAsync.CreateVehicle( model, position, rotation );
         var actualVeh = ActivatorUtilities.CreateInstance<T>( _serviceProvider, altVeh.Core, altVeh.NativePointer, altVeh.Id );
-        Alt.Core.PoolManager.Vehicle.Add( actualVeh ); // Thanks zziger <3
+        Alt.AddToPool( actualVeh ); // Thanks zziger <3
         return actualVeh;
     }
 
